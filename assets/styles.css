@@ -1,0 +1,30 @@
+.file-type {
+	background: url("images/folder.png") 0 50% no-repeat;
+	padding-left: 20px;
+}
+
+a.code {
+	background-image: url("images/code.png");
+}
+
+a.doc {
+	background-image: url("images/doc.png");
+}
+
+a.file {
+	background-image: url("images/file.png");
+}
+
+a.image {
+	background-image: url("images/image.png");
+}
+
+a.video {
+	background-image: url("images/video.png");
+}
+
+#type-select{
+	width: auto;
+	display: inline;
+	float: right;
+}
