@@ -137,10 +137,12 @@
 			$ArrayObject = new ArrayObject($crumbs);
 			$Iterator = $ArrayObject->getIterator();
 			
+			$path = NULL;
 			$result = NULL;
 			
 			while($Iterator->valid()){
-				$result .= $Iterator->current() . '/';
+				$path .= $Iterator->current() . '/';
+				$result .= '<a href="'. URL .'/symphony/extension/filemanager/browse/' . $path . '">' . $Iterator->current() . '</a>/';
 				$Iterator->next();
 			}
 			
