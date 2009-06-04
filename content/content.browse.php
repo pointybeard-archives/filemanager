@@ -69,7 +69,7 @@
 				array('Name', 'col'),
 				array('Size', 'col'),
 				array('Permissions', 'col'),
-				array('Properties', 'col'),			
+				array('Available Actions', 'col'),			
 
 			);	
 

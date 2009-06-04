@@ -221,10 +221,10 @@
 					$download_uri = self::baseURL() . 'download/?file=' . urlencode($relpath);
 			}
 			
-			else $download_uri = self::baseURL() . 'browse' . $relpath . '/';
+			else $download_uri = self::baseURL() . 'properties/?file=' . urlencode($relpath) . '/';
 			
 			if(!$file->isDot()){
-				$td1 = Widget::TableData(Widget::Anchor($file->getFilename(), $download_uri, NULL, 'file-type ' . ($file->isDir() ? 'folder' : File::fileType($file->getFilename()))));
+				$td1 = Widget::TableData(Widget::Anchor($file->getFilename(), self::baseURL() . ($file->isDir() ? 'browse' . $relpath . '/' : 'properties/?file=' . urlencode($relpath)), NULL, 'file-type ' . ($file->isDir() ? 'folder' : File::fileType($file->getFilename()))));
 	
 				//$group = (function_exists('posix_getgrgid') ? posix_getgrgid($file->getGroup()) : $file->getGroup());
 				//$owner = (function_exists('posix_getpwuid') ? posix_getpwuid($file->getOwner()) : $file->getOwner());
@@ -234,16 +234,20 @@
 
 				$td3 = Widget::TableData(File::getReadablePerm($file->getPerms()), NULL, NULL, NULL, array('title' => File::getOctalPermission($file->getPerms()) . ', ' . (isset($owner['name']) ? $owner['name'] : $owner) . ':' . (isset($group['name']) ? $group['name'] : $group)));
 				
-				if($file->isWritable())
-					$td4 = Widget::TableData(Widget::Anchor('Edit', self::baseURL() . 'properties/?file=' . urlencode($relpath)));
-					
-				else
+				if($file->isWritable()) {
+					if($file->isDir()){
+						$td4 = Widget::TableData(Widget::Anchor('Edit Properties', $download_uri));
+					} else {
+						$td4 = Widget::TableData(Widget::Anchor('Download', $download_uri));
+					}	
+				}	
+				else {
 					$td4 = Widget::TableData('-', 'inactive');	
-				
+				}
 			}
 			
 			else{
-				$td1 = Widget::TableData(Widget::Anchor('&crarr;', $download_uri));
+				$td1 = Widget::TableData(Widget::Anchor('&crarr;', self::baseURL() . 'browse' . $relpath . '/'));
 				$td3 = Widget::TableData('-', 'inactive');
 				$td4 = Widget::TableData('-', 'inactive');
 			}
