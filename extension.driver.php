@@ -130,6 +130,10 @@
 			return Administration::instance()->Configuration->get('start-location', 'filemanager');
 		}
 		
+		public function getStartLocationLink(){
+			return Widget::Anchor(substr(Administration::instance()->Configuration->get('start-location', 'filemanager'),1), URL . '/symphony/extension/filemanager/browse')->generate();
+		}
+		
 		public static function buildBreadCrumbs(array $crumbs){
 
 			if(empty($crumbs)) return;
@@ -142,7 +146,7 @@
 			
 			while($Iterator->valid()){
 				$path .= $Iterator->current() . '/';
-				$result .= '<a href="'. URL .'/symphony/extension/filemanager/browse/' . $path . '">' . $Iterator->current() . '</a>/';
+				$result .= Widget::Anchor($Iterator->current(), URL . '/symphony/extension/filemanager/browse/' . $path)->generate();
 				$Iterator->next();
 			}
 			
