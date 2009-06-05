@@ -214,7 +214,7 @@
 			elseif($file->isDot() && !$includeParentDirectoryDots && $file->getFilename() == '..') return;
 			elseif($file->getFilename() == '.') return;
 			
-			$relpath = str_replace(DOCROOT . $this->getStartLocation(), NULL, $file->getPathname());
+			$relpath = str_replace(($this->getStartLocation() == '/' ? DOCROOT : DOCROOT . $this->getStartLocation()), NULL, $file->getPathname());
 			
 			if(!$file->isDir()){
 				
