@@ -60,7 +60,7 @@
 			$create_button = Widget::Anchor('Create a file or directory', extension_filemanager::baseURL() . 'new/upload/' . (is_array($this->_context) && !empty($this->_context) ? implode('/', $this->_context) . '/' : NULL), 'Create a file or directory', 'create button');
 
 			$this->setPageType('table');
-			$this->appendSubheading(trim($FileManager->getStartLocation(), '/') . '/' . $FileManager->buildBreadCrumbs($this->_context), (is_writable($path) ? $create_button : NULL));
+			$this->appendSubheading(trim($FileManager->getStartLocationLink(), '/') . '/' . $FileManager->buildBreadCrumbs($this->_context), (is_writable($path) ? $create_button : NULL));
 
 			$Iterator = new DirectoryIterator($path);
 
