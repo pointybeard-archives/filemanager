@@ -135,6 +135,7 @@
 			
 			$this->Form->setAttribute('enctype', 'multipart/form-data');
 			$this->Form->prependChild(Widget::Input('MAX_FILE_SIZE', Administration::instance()->Configuration->get('max_upload_size', 'admin'), 'hidden'));
+			$this->Form->prependChild(Widget::Input('type', $type, 'hidden'));
 			
 			$fields = array();
 			
