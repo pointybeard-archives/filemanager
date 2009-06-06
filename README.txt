@@ -1,7 +1,7 @@
 File Manager
 ------------------------------------
 
-Version: 0.8.1
+Version: 0.8.2
 Author: Symphony Team (http://symphony21.com)
 Build Date: 31st Mar 2008
 Requirements: Symphony 2.0.2 or greater
