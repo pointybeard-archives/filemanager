@@ -120,7 +120,6 @@
 		function view(){
 			
 			$this->_Parent->Page->addStylesheetToHead(URL . '/extensions/filemanager/assets/styles.css', 'screen', 70);
-			$this->_Parent->Page->addScriptToHead(URL . '/extensions/filemanager/assets/scripts.js', 90);
 			
 			$FileManager =& $this->_Parent->ExtensionManager->create('filemanager');
 
@@ -132,14 +131,7 @@
 			
 			$type = array_shift($this->_context);
 			
-			$options = array(
-				array('upload', $type == 'upload', 'Upload File'),
-				array('directory', $type == 'directory', 'Create Directory'),
-				array('file', $type == 'file', 'Create File'),
-			);
-			$select = Widget::Select('type', $options, array('id' => 'type-select', 'onchange' => 'typeRedirect(this.value);'));
-			
-			$this->appendSubheading(trim($FileManager->getStartLocation(), '/') . '/' . $FileManager->buildBreadCrumbs($this->_context), $select);
+			$this->appendSubheading(trim($FileManager->getStartLocationLink(), '/') . '/' . $FileManager->buildBreadCrumbs($this->_context), $select);
 			
 			$this->Form->setAttribute('enctype', 'multipart/form-data');
 			$this->Form->prependChild(Widget::Input('MAX_FILE_SIZE', Administration::instance()->Configuration->get('max_upload_size', 'admin'), 'hidden'));
