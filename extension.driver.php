@@ -6,7 +6,7 @@
 
 		public function about(){
 			return array('name' => 'File Manager',
-						 'version' => '0.8',
+						 'version' => '0.8.1',
 						 'release-date' => '2008-01-31',
 						 'author' => array('name' => 'Alistair Kearney',
 										   'website' => 'http://www.pointybeard.com',
