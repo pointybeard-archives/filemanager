@@ -236,17 +236,19 @@
 				$group = $file->getGroup();
 				$owner = $file->getOwner();
 
-				$td3 = Widget::TableData(File::getReadablePerm($file->getPerms()), NULL, NULL, NULL, array('title' => File::getOctalPermission($file->getPerms()) . ', ' . (isset($owner['name']) ? $owner['name'] : $owner) . ':' . (isset($group['name']) ? $group['name'] : $group)));
+				$td3 = Widget::TableData(File::getOctalPermission($file->getPerms()) . ': ' . File::getReadablePerm($file->getPerms()), NULL, NULL, NULL, array('title' => (isset($owner['name']) ? $owner['name'] : $owner) . ':' . (isset($group['name']) ? $group['name'] : $group)));
+				
+				$td4 = Widget::TableData(DateTimeObj::get(__SYM_DATETIME_FORMAT__, $file->getMTime()));
 				
 				if($file->isWritable()) {
 					if($file->isDir()){
-						$td4 = Widget::TableData(Widget::Anchor('Edit Properties', $download_uri));
+						$td5 = Widget::TableData(Widget::Anchor('Edit Properties', $download_uri));
 					} else {
-						$td4 = Widget::TableData(Widget::Anchor('Download', $download_uri));
+						$td5 = Widget::TableData(Widget::Anchor('Download', $download_uri));
 					}	
 				}	
 				else {
-					$td4 = Widget::TableData('-', 'inactive');	
+					$td5 = Widget::TableData('-', 'inactive');	
 				}
 			}
 			
@@ -254,6 +256,7 @@
 				$td1 = Widget::TableData(Widget::Anchor('&crarr;', self::baseURL() . 'browse' . $relpath . '/'));
 				$td3 = Widget::TableData('-', 'inactive');
 				$td4 = Widget::TableData('-', 'inactive');
+				$td5 = Widget::TableData('-', 'inactive');
 			}
 
 			$td2 = Widget::TableData(($file->isDir() ? '-' : General::formatFilesize($file->getSize())), ($file->isDir() ? 'inactive' : NULL));
@@ -261,9 +264,9 @@
 			
 			$startlocation = DOCROOT . $this->getStartLocation();
 			
-			if(!$file->isDot()) $td4->appendChild(Widget::Input('items['.str_replace($startlocation, '', $file->getPathname()) . ($file->isDir() ? '/' : NULL).']', NULL, 'checkbox'));
+			if(!$file->isDot()) $td5->appendChild(Widget::Input('items['.str_replace($startlocation, '', $file->getPathname()) . ($file->isDir() ? '/' : NULL).']', NULL, 'checkbox'));
 			
-			return Widget::TableRow(array($td1, $td2, $td3, $td4));
+			return Widget::TableRow(array($td1, $td2, $td3, $td4, $td5));
 						
 		}
 		
