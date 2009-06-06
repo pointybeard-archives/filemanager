@@ -23,8 +23,35 @@ a.video {
 	background-image: url("images/video.png");
 }
 
-#type-select{
-	width: auto;
-	display: inline;
-	float: right;
+ul.create-menu {
+    position: absolute;
+    top:158px;
+    right:0;
+    margin-right: 19px;
+    text-align: right;
+    list-style: none;
+    font-size: 80%;
+    text-transform: uppercase;
+    font-family: helvetica, arial;
 }
+
+ul.create-menu li {
+    display: inline;
+    margin: 0 2px;
+}
+
+ul.create-menu li a {
+    padding: 2px 7px;
+    background: #81b934;
+    color: #fff;
+    text-decoration: none;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+}
+
+ul.create-menu li a:hover {
+    background: #222;
+}
+
+

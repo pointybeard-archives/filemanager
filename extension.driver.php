@@ -28,7 +28,7 @@
 						array(
 							'name' => 'Browse',
 							'link' => '/browse/'
-						)
+						),
 					)
 				)
 				

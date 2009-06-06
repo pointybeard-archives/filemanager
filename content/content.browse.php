@@ -56,11 +56,26 @@
 			$FileManager =& $this->_Parent->ExtensionManager->create('filemanager');
 
 			$path = DOCROOT . $FileManager->getStartLocation() . (is_array($this->_context) && !empty($this->_context) ? '/' . implode('/', $this->_context) . '/' : NULL);
-
-			$create_button = Widget::Anchor('Create a file or directory', extension_filemanager::baseURL() . 'new/upload/' . (is_array($this->_context) && !empty($this->_context) ? implode('/', $this->_context) . '/' : NULL), 'Create a file or directory', 'create button');
+			
+			// Build file/dir creation menu
+			$create_menu = new XMLElement('ul');
+			$create_menu->setAttribute('class', 'create-menu');
+			
+			$li = new XMLElement('li');
+			$li->appendChild(Widget::Anchor('New Directory', extension_filemanager::baseURL() . 'new/directory/' . (is_array($this->_context) && !empty($this->_context) ? implode('/', $this->_context) . '/' : NULL), 'New Directory'));
+			$create_menu->appendChild($li);
+			
+			$li = new XMLElement('li');
+			$li->appendChild(Widget::Anchor('New File', extension_filemanager::baseURL() . 'new/file/' . (is_array($this->_context) && !empty($this->_context) ? implode('/', $this->_context) . '/' : NULL), 'New File'));
+			$create_menu->appendChild($li);
+			
+			$li = new XMLElement('li');
+			$li->appendChild(Widget::Anchor('Upload File', extension_filemanager::baseURL() . 'new/upload/' . (is_array($this->_context) && !empty($this->_context) ? implode('/', $this->_context) . '/' : NULL), 'Upload File'));
+			$create_menu->appendChild($li);
 
 			$this->setPageType('table');
-			$this->appendSubheading(trim($FileManager->getStartLocationLink(), '/') . '/' . $FileManager->buildBreadCrumbs($this->_context), (is_writable($path) ? $create_button : NULL));
+			$this->appendSubheading(trim($FileManager->getStartLocationLink(), '/') . '/' . $FileManager->buildBreadCrumbs($this->_context));
+			$this->Form->appendChild($create_menu);
 
 			$Iterator = new DirectoryIterator($path);
 
@@ -110,7 +125,6 @@
 
 			$tableActions->appendChild(Widget::Select('with-selected', $options));
 			$tableActions->appendChild(Widget::Input('action[apply]', 'Apply', 'submit'));
-
 			$this->Form->appendChild($tableActions);
 
 		}
