@@ -137,7 +137,9 @@
 		}
 		
 		public function getStartLocationLink(){
-			return Widget::Anchor(substr(Administration::instance()->Configuration->get('start-location', 'filemanager'),1), URL . '/symphony/extension/filemanager/browse')->generate();
+			$start_location = Administration::instance()->Configuration->get('start-location', 'filemanager');
+			$start_name = explode('/',trim(DOCROOT . $start_location, '/'));
+			return Widget::Anchor(end($start_name), URL . '/symphony/extension/filemanager/browse')->generate();
 		}
 		
 		public static function buildBreadCrumbs(array $crumbs){
@@ -152,7 +154,7 @@
 			
 			while($Iterator->valid()){
 				$path .= $Iterator->current() . '/';
-				$result .= Widget::Anchor($Iterator->current(), URL . '/symphony/extension/filemanager/browse/' . $path)->generate();
+				$result .= ' / ' . Widget::Anchor($Iterator->current(), URL . '/symphony/extension/filemanager/browse/' . $path)->generate();
 				$Iterator->next();
 			}
 			
@@ -174,8 +176,6 @@
 					
 				}while(file_exists($path . '/' . $filename));
 				
-			
-			
 			else:
 				
 				do{
@@ -243,13 +243,13 @@
 				$group = $file->getGroup();
 				$owner = $file->getOwner();
 
-				$td3 = Widget::TableData(File::getOctalPermission($file->getPerms()) . ': ' . File::getReadablePerm($file->getPerms()), NULL, NULL, NULL, array('title' => (isset($owner['name']) ? $owner['name'] : $owner) . ':' . (isset($group['name']) ? $group['name'] : $group)));
+				$td3 = Widget::TableData(File::getOctalPermission($file->getPerms()) . ' <span class="inactive">' . File::getReadablePerm($file->getPerms()), NULL, NULL, NULL, array('title' => (isset($owner['name']) ? $owner['name'] : $owner) . ', ' . (isset($group['name']) ? $group['name'] : $group)) . '</span>');
 				
 				$td4 = Widget::TableData(DateTimeObj::get(__SYM_DATETIME_FORMAT__, $file->getMTime()));
 				
 				if($file->isWritable()) {
 					if($file->isDir()){
-						$td5 = Widget::TableData(Widget::Anchor('Edit Properties', $download_uri));
+						$td5 = Widget::TableData(Widget::Anchor('Edit', $download_uri));
 					} else {
 						$td5 = Widget::TableData(Widget::Anchor('Download', $download_uri));
 					}	

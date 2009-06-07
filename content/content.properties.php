@@ -78,7 +78,7 @@
 			foreach($pathelements as $element) {
 				if($element != '') {
 					$path .= $element . '/';
-					$breadcrumb .= '/' . ($element == end($pathelements) ? $element : Widget::Anchor($element, $path)->generate());
+					$breadcrumb .= ' / ' . ($element == end($pathelements) ? $element : Widget::Anchor($element, $path)->generate());
 				}
 			}
 			
