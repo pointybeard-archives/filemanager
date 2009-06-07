@@ -71,8 +71,18 @@
 			}
 			
 			$this->setPageType('form');	
-
-			$this->appendSubheading($_GET['file']);
+			
+			$path = extension_filemanager::baseURL() . 'browse/';
+			$breadcrumb = '';
+			$pathelements = explode('/', $_GET['file']);
+			foreach($pathelements as $element) {
+				if($element != '') {
+					$path .= $element . '/';
+					$breadcrumb .= '/' . ($element == end($pathelements) ? $element : Widget::Anchor($element, $path)->generate());
+				}
+			}
+			
+			$this->appendSubheading(trim($FileManager->getStartLocationLink(), '/') . $breadcrumb);
 			
 			$fields = array();
 			
