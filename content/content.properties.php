@@ -125,6 +125,21 @@
 				$this->Form->appendChild($fieldset);
 		
 			}
+			
+			if(!$file->isDir() && File::fileType($file->name()) == File::IMAGE){
+			
+				$fieldset = new XMLElement('fieldset');
+				$fieldset->setAttribute('class', 'settings');
+				$fieldset->appendChild(new XMLElement('legend', 'Preview'));
+			
+				$img = new XMLElement('img');
+				$img->setAttribute('src', URL . $FileManager->getStartLocation() . $_GET['file']);
+				$img->setAttribute('alt', $file->name());
+				$fieldset->appendChild($img);
+		
+				$this->Form->appendChild($fieldset);
+		
+			}
 		
 			$div = new XMLElement('div');
 			$div->setAttribute('class', 'actions');
