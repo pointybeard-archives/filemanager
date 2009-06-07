@@ -74,7 +74,7 @@
 			$create_menu->appendChild($li);
 
 			$this->setPageType('table');
-			$this->appendSubheading(trim($FileManager->getStartLocationLink(), '/') . '/' . $FileManager->buildBreadCrumbs($this->_context));
+			$this->appendSubheading(trim($FileManager->getStartLocationLink(), '/') . $FileManager->buildBreadCrumbs($this->_context));
 			$this->Form->appendChild($create_menu);
 
 			$Iterator = new DirectoryIterator($path);
