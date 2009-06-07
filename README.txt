@@ -21,7 +21,7 @@ Note, this is a beta extension.
 
 [KNOWN BUGS]
 
-1. Unable to set/change permissions
+1. Unable to set/change permissions (http://github.com/pointybeard/filemanager/issues#issue/3)
 
 2. Renaming directory fails (http://github.com/pointybeard/filemanager/issues#issue/4)
 
