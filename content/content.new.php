@@ -131,7 +131,7 @@
 			
 			$type = array_shift($this->_context);
 			
-			$this->appendSubheading(trim($FileManager->getStartLocationLink(), '/') . '/' . $FileManager->buildBreadCrumbs($this->_context), $select);
+			$this->appendSubheading(trim($FileManager->getStartLocationLink(), '/') . $FileManager->buildBreadCrumbs($this->_context));
 			
 			$this->Form->setAttribute('enctype', 'multipart/form-data');
 			$this->Form->prependChild(Widget::Input('MAX_FILE_SIZE', Administration::instance()->Configuration->get('max_upload_size', 'admin'), 'hidden'));
