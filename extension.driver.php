@@ -168,6 +168,8 @@
 			$archivename = Administration::instance()->Configuration->get('archive-name', 'filemanager');
 			
 			if(is_dir($path)):
+			
+				if ($archivename == '' || $archivename == null) $archivename = basename($path);
 				
 				do{
 					
