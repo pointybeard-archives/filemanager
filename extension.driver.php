@@ -60,7 +60,7 @@
 			
 			$context['settings']['filemanager'] = array(
 														  'show-hidden' => (isset($conf['show-hidden']) ? 'yes' : 'no'),
-														  'start-location' => '/' . trim($conf['start-location'], '/ '),
+														  'start-location' => ($conf['start-location'] == '' || $conf['start-location'] == '/' ? '' : '/' . trim($conf['start-location'], '/ ')),
 														  'archive-name' => (isset($conf['archive-name']) ? $conf['archive-name'] : 'Backup')
 														);
 
