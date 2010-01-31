@@ -62,19 +62,19 @@
 			$create_menu->setAttribute('class', 'create-menu');
 			
 			$li = new XMLElement('li');
-			$li->appendChild(Widget::Anchor('New Directory', extension_filemanager::baseURL() . 'new/directory/' . (is_array($this->_context) && !empty($this->_context) ? implode('/', $this->_context) . '/' : NULL), 'New Directory', 'new-directory'));
+			$li->appendChild(Widget::Anchor('New Directory', extension_filemanager::baseURL() . 'new/directory/' . (is_array($this->_context) && !empty($this->_context) ? implode('/', $this->_context) . '/' : NULL), 'New Directory', 'button create'));
 			$create_menu->appendChild($li);
 			
 			$li = new XMLElement('li');
-			$li->appendChild(Widget::Anchor('New File', extension_filemanager::baseURL() . 'new/file/' . (is_array($this->_context) && !empty($this->_context) ? implode('/', $this->_context) . '/' : NULL), 'New File', 'new-file'));
+			$li->appendChild(Widget::Anchor('New File', extension_filemanager::baseURL() . 'new/file/' . (is_array($this->_context) && !empty($this->_context) ? implode('/', $this->_context) . '/' : NULL), 'New File', 'button create'));
 			$create_menu->appendChild($li);
 			
 			$li = new XMLElement('li');
-			$li->appendChild(Widget::Anchor('Upload File', extension_filemanager::baseURL() . 'new/upload/' . (is_array($this->_context) && !empty($this->_context) ? implode('/', $this->_context) . '/' : NULL), 'Upload File', 'upload-file'));
+			$li->appendChild(Widget::Anchor('Upload File', extension_filemanager::baseURL() . 'new/upload/' . (is_array($this->_context) && !empty($this->_context) ? implode('/', $this->_context) . '/' : NULL), 'Upload File', 'button create'));
 			$create_menu->appendChild($li);
 
 			$this->setPageType('table');
-			$this->appendSubheading(trim($FileManager->getStartLocationLink(), '/') . $FileManager->buildBreadCrumbs($this->_context));
+			$this->appendSubheading(trim($FileManager->getStartLocationLink(), '/') . (is_array($this->_context) ? $FileManager->buildBreadCrumbs($this->_context) : NULL));
 			$this->Form->appendChild($create_menu);
 
 			$Iterator = new DirectoryIterator($path);

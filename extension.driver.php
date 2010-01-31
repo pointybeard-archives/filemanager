@@ -245,7 +245,7 @@
 				$group = $file->getGroup();
 				$owner = $file->getOwner();
 
-				$td3 = Widget::TableData(File::getOctalPermission($file->getPerms()) . ' <span class="inactive">' . File::getReadablePerm($file->getPerms()), NULL, NULL, NULL, array('title' => (isset($owner['name']) ? $owner['name'] : $owner) . ', ' . (isset($group['name']) ? $group['name'] : $group)) . '</span>');
+				$td3 = Widget::TableData(File::getOctalPermission($file->getPerms()) . ' <span class="inactive">' . File::getReadablePerm($file->getPerms()), NULL, NULL, NULL, array('title' => (isset($owner['name']) ? $owner['name'] : $owner) . ', ' . (isset($group['name']) ? $group['name'] : $group) . '</span>'));
 				
 				$td4 = Widget::TableData(DateTimeObj::get(__SYM_DATETIME_FORMAT__, $file->getMTime()));
 				

@@ -25,9 +25,10 @@ a.video {
 
 ul.create-menu {
 	float: right;
-	margin: -1.6em 19px 0 0;
+	margin: -1.15em 19px 0 0;
 	list-style: none;
 	position: relative;
+	font:127.28% Lucida Grande,Leelawadee,Tahoma,Verdana,sans-serif;
 }
 
 ul.create-menu li {
@@ -35,31 +36,5 @@ ul.create-menu li {
 }
 
 ul.create-menu li a {
-	background: #81b934;
-	color: #fff;
-	text-decoration: none;
-	display: block;
-	float: left;
-	margin-left: 5px;
-	text-indent: -9999px;
-	height: 15px;
-}
-
-ul.create-menu li a:hover {
-	background: #222;
-}
-
-ul.create-menu li a.new-directory {
-	width: 83px;
-	background-image: url(images/new-directory.png);
-}
-
-ul.create-menu li a.new-file {
-	width: 51px;
-	background-image: url(images/new-file.png);
-}
-
-ul.create-menu li a.upload-file {
-	width: 67px;
-	background-image: url(images/upload-file.png);
+	margin: 0 .25em;
 }
