@@ -238,6 +238,8 @@
 
 				$group = $file->getGroup();
 				$owner = $file->getOwner();
+				
+				$td2 = Widget::TableData(General::formatFilesize($file->getSize()), NULL);
 
 				$td3 = Widget::TableData(File::getOctalPermission($file->getPerms()) . ' <span class="inactive">' . File::getReadablePerm($file->getPerms()), NULL, NULL, NULL, array('title' => (isset($owner['name']) ? $owner['name'] : $owner) . ', ' . (isset($group['name']) ? $group['name'] : $group) . '</span>'));
 				
@@ -257,12 +259,11 @@
 			
 			else{
 				$td1 = Widget::TableData(Widget::Anchor('&crarr;', self::baseURL() . 'browse' . $relpath . '/'));
+				$td2 = Widget::TableData('-', 'inactive');
 				$td3 = Widget::TableData('-', 'inactive');
 				$td4 = Widget::TableData('-', 'inactive');
 				$td5 = Widget::TableData('-', 'inactive');
 			}
-
-			$td2 = Widget::TableData(($file->isDir() ? '-' : General::formatFilesize($file->getSize())), ($file->isDir() ? 'inactive' : NULL));
 	
 			
 			$startlocation = DOCROOT . $this->getStartLocation();

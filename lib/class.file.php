@@ -75,9 +75,13 @@
 			
 			$perm = $this->permissions();
 			
-			file_put_contents(dirname($this->_path) . '/' . $name, $this->contents());
-			
-			unlink($this->_path);
+			if(is_dir($this->_path)){
+				rename($this->_path, dirname($this->_path) . "/" . $name);
+			}
+			else {
+				file_put_contents(dirname($this->_path) . '/' . $name, $this->contents());		
+				unlink($this->_path);
+			}
 			
 			$this->_path = dirname($this->_path) . '/' . $name;
 			$this->setPermissions($perm);
