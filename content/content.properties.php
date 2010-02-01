@@ -140,14 +140,23 @@
 				$this->Form->appendChild($fieldset);
 		
 			}
-		
+			
 			$div = new XMLElement('div');
 			$div->setAttribute('class', 'actions');
-			$div->appendChild(Widget::Input('action[save]', 'Save Changes', 'submit', array('accesskey' => 's')));
 			
-			$button = new XMLElement('button', 'Delete');
-			$button->setAttributeArray(array('name' => 'action[delete]', 'class' => 'confirm delete', 'title' => 'Delete this ' . ($file->isDir() ? 'Folder' : 'File')));
-			$div->appendChild($button);
+			if(is_writeable(DOCROOT . $this->_FileManager->getStartLocation() . $_GET['file'])) {
+			
+				$div->appendChild(Widget::Input('action[save]', 'Save Changes', 'submit', array('accesskey' => 's')));
+			
+				$button = new XMLElement('button', 'Delete');
+				$button->setAttributeArray(array('name' => 'action[delete]', 'class' => 'confirm delete', 'title' => 'Delete this ' . ($file->isDir() ? 'Folder' : 'File')));
+				$div->appendChild($button);
+			}
+			else {
+				$notice = new XMLElement('p','The server does not have permission to edit this file.');
+				$notice->setAttribute('class','inactive');
+				$div->appendChild($notice);
+			}
 			
 			$this->Form->appendChild($div);			
 
