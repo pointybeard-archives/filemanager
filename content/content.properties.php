@@ -31,7 +31,7 @@
 				$relpath = str_replace(DOCROOT . $FileManager->getStartLocation(), NULL, dirname($_GET['file']));
 				
 				if($file->isWritable())
-					redirect($FileManager->baseURL() . 'properties/?file=' . rtrim(dirname($_GET['file']), '/') . '/' . $file->name());
+					redirect($FileManager->baseURL() . 'properties/?file=' . rtrim(dirname($_GET['file']), '/') . '/' . $file->name() . '&result=saved');
 				
 				else redirect($FileManager->baseURL() . 'browse/' . $relpath);
 				
@@ -60,11 +60,19 @@
 			
 			if($formHasErrors) $this->pageAlert('An error occurred while processing this form. <a href="#error">See below for details.</a>', AdministrationPage::PAGE_ALERT_ERROR);
 
-			if(isset($this->_context[0])){
-				switch($this->_context[0]){
+			if(isset($_GET['result'])){
+				switch($_GET['result']){
 					
 					case 'saved':
-						$this->pageAlert('{1} updated successfully.', AdministrationPage::PAGE_ALERT_NOTICE, array(($file->isDir() ? 'Folder' : 'File')));
+					
+						$this->pageAlert(
+							__(
+								'%s updated successfully',
+								array(($file->isDir() ? 'Folder' : 'File'))
+							),
+							Alert::SUCCESS
+						);
+						
 						break;
 					
 				}

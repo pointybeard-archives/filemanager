@@ -30,8 +30,13 @@
 						elseif(is_dir($abs_file)){
 							
 							if(!@rmdir($abs_file))
-								$this->pageAlert('{1} could not be deleted as is still contains files.', AdministrationPage::PAGE_ALERT_ERROR, array('<code>'.$rel_file.'</code>'));
-
+								$this->pageAlert(
+									__(
+										'%s could not be deleted as is still contains files.',
+										array('<code>'.$rel_file.'</code>')
+									),
+									AdministrationPage::PAGE_ALERT_ERROR
+								);
 						}
 						
 					}
