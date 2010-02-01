@@ -117,7 +117,7 @@
 				$fieldset->appendChild(new XMLElement('legend', 'Editor'));
 
 				$label = Widget::Label('Contents');
-				$label->appendChild(Widget::Textarea('fields[contents]', '25', '50', General::sanitize(General::tabsToSpaces($file->contents(), 2)), array('class' => 'code')));
+				$label->appendChild(Widget::Textarea('fields[contents]', '25', '50', General::sanitize($file->contents()), array('class' => 'code')));
 		
 				if(isset($this->_errors['contents'])) $fieldset->appendChild(Widget::wrapFormElementWithError($label, $this->_errors['contents']));
 				else $fieldset->appendChild($label);
