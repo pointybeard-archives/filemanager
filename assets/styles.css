@@ -23,7 +23,7 @@ a.video {
 	background-image: url("images/video.png");
 }
 
-ul.create-menu {
+.create-menu {
 	float: right;
 	margin: -1.15em 19px 0 0;
 	list-style: none;
@@ -31,10 +31,15 @@ ul.create-menu {
 	font:127.28% Lucida Grande,Leelawadee,Tahoma,Verdana,sans-serif;
 }
 
-ul.create-menu li {
+	p.create-menu {
+		font-size: 1em;
+		color: #aaa;
+	}
+
+.create-menu li {
 	display: inline;
 }
 
-ul.create-menu li a {
+.create-menu li a {
 	margin: 0 .25em;
 }

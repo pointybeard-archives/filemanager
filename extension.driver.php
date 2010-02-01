@@ -19,19 +19,13 @@
 			return URL . '/symphony/extension/filemanager/';
 		}
 		
-		public function fetchNavigation(){
+		public function fetchNavigation() {
 			return array(
 				array(
-					'location' => 100,
-					'name' => 'File Manager',
-					'children' => array(
-						array(
-							'name' => 'Browse',
-							'link' => '/browse/'
-						),
-					)
+					'location'	=> 'System',
+					'name'		=> 'File Manager',
+					'link'		=> '/browse/'
 				)
-				
 			);
 		}
 
