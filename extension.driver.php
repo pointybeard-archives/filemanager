@@ -6,11 +6,11 @@
 
 		public function about(){
 			return array('name' => 'File Manager',
-						 'version' => '0.8.2',
-						 'release-date' => '2008-01-31',
-						 'author' => array('name' => 'Alistair Kearney',
-										   'website' => 'http://www.pointybeard.com',
-										   'email' => 'alistair@pointybeard.com'),
+						 'version' => '0.9',
+						 'release-date' => '2010-01-31',
+						 'author' => array('name' => 'Symphony Team',
+										   'website' => 'http://symphony-cms.com',
+										   'email' => 'team@symphony-cms.com'),
 						 'description' => 'Upload, Edit and manage files and folders.'
 				 		);
 		}
